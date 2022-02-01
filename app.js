@@ -5,6 +5,7 @@ const body_parser = require('body-parser');
 const admin_data = require('./router/admin.js');
 const shop_route = require('./router/shop.js');
 const path = require('path');
+const error_controller = require('./controller/error.js');
 //#endregion
 
 const app = express();
@@ -18,8 +19,5 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/admin', admin_data.router);
 app.use(shop_route);
 
-app.use((req, res, next) => {
-    //res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
-    res.status(404).render('404', { page_title: '404 Error' });
-})
+app.use(error_controller.get_404_page);
 app.listen(3000);
