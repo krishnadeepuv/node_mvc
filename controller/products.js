@@ -13,14 +13,17 @@ exports.post_add_product = (req, res, next) => {
 }
 
 exports.get_products = (req, res, next) => {
-    const items = Product.fetch_products();
+    // const items = [];
+    Product.fetch_products(items => {
+        res.render('shop.ejs',
+            {
+                products: items,
+                page_title: 'Shop Products',
+                has_products: items.length > 0,
+                active_shop: true,
+                product_css: true
+            });
+    });
     //res.sendFile(path.join(dir_name, 'views', 'shop.html'));
-    res.render('shop.ejs',
-        {
-            products: items,
-            page_title: 'Shop Products',
-            has_products: items.length > 0,
-            active_shop: true,
-            product_css: true
-        });
+
 }
