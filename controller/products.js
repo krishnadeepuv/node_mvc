@@ -2,7 +2,7 @@ const Product = require('../models/product.js');
 
 exports.get_add_product_page = (req, res, next) => {
     //res.sendFile(path.join(dir_name, 'views', 'admin.html'));
-    res.render('admin.ejs', { page_title: 'Manage Inventory' });
+    res.render('admin/add-product.ejs', { page_title: 'Manage Inventory' });
 }
 
 exports.post_add_product = (req, res, next) => {
@@ -15,7 +15,7 @@ exports.post_add_product = (req, res, next) => {
 exports.get_products = (req, res, next) => {
     // const items = [];
     Product.fetch_products(items => {
-        res.render('shop.ejs',
+        res.render('shop/product-list.ejs',
             {
                 products: items,
                 page_title: 'Shop Products',
